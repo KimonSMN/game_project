@@ -12,7 +12,7 @@ int main() {
 	interface_init();
     state = state_create(); 
 
-	struct key_state keys = { false, false, false, false, false, false, false };
+	struct key_state keys = { false, false, false, false, false, false, false, false };
 	
 	state_info(state)->spaceship->position.x = (SCREEN_WIDTH - 120) / 2;
 	state_info(state)->spaceship->position.y = (SCREEN_HEIGHT - 120) / 2;
@@ -20,6 +20,7 @@ int main() {
 	while (!WindowShouldClose()) {
 			// Update key states
 			keys.up = IsKeyDown(KEY_UP);
+			keys.down = IsKeyDown(KEY_DOWN);
 			keys.left = IsKeyDown(KEY_LEFT);
 			keys.right = IsKeyDown(KEY_RIGHT);
 			keys.space = IsKeyDown(KEY_SPACE);

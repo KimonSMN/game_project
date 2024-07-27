@@ -79,7 +79,7 @@ Music background_music;
 Music intro_music;
 
 int coinIndex = 0;
-float coinTimer = 4; // number of sprites
+float coinTimer = 4;
 
 int heartIndex = 0;
 
@@ -591,8 +591,6 @@ void interface_draw_intro(State state, GameState *gameState) {
 void interface_draw_frame(State state) {
 
     int scale_factor = 5;
-
-
 
     coinTimer--;
     if (coinTimer < 0) {

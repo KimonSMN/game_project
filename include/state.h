@@ -14,25 +14,40 @@
 #define BULLET_SPEED 10
 #define BULLET_SIZE 3
 #define BULLET_DELAY 15
-#define SPACESHIP_SIZE 20
+#define PLAYER_SIZE 20
 #define SPACESHIP_ROTATION (PI/32)
-#define SPACESHIP_ACCELERATION 0.1
+
+#define PLAYER_MOVEMENT_SPEED 5
 #define SPACESHIP_SLOWDOWN 0.98
 
 #define SCREEN_WIDTH 900	// Πλάτος της οθόνης
 #define SCREEN_HEIGHT 700	// Υψος της οθόνης
 
+//////////////////// Animation /////////////////////////////
+
+// Player when idle
+#define PLAYER_IDLE_TIME 13
+#define PLAYER_IDLE_COUNT 5 // number of sprites
+#define PLAYER_IDLE_HEIGHT 54
+#define PLAYER_IDLE_WIDTH 45
+
+// Player when walking
+#define PLAYER_WALK_TIME 8
+#define PLAYER_WALK_COUNT 8 // number of sprites
+#define PLAYER_WALK_HEIGHT 18
+#define PLAYER_WALK_WIDTH 15
+
 typedef enum {
-	SPACESHIP, ASTEROID, BULLET
+	PLAYER, ENEMY, BULLET
 } ObjectType;
 
 typedef enum {
-	IDLE, JUMPING, FALLING, MOVING_UP, MOVING_DOWN
+	IDLE, JUMPING, FALLING
 } VerticalMovement;
 
 // Πληροφορίες για κάθε αντικείμενο
 typedef struct object {
-	ObjectType type;			// Τύπος (Διαστημόπλοιο, Αστεροειδής, Σφαίρα)
+	ObjectType type;			// Τύπος (Παιχτης, Εχθρος, Σφαίρα)
 	Vector2 position;			// Θέση
 	Vector2 speed;				// Ταχύτητα (pixels/frame)
 	double size;				// Μέγεθος (pixels)
@@ -41,7 +56,7 @@ typedef struct object {
 
 // Γενικές πληροφορίες για την κατάσταση του παιχνιδιού
 typedef struct state_info {
-	Object spaceship;				// πληροφορίες για τη το διαστημόπλοιο
+	Object player;					// πληροφορίες για τη τον παικτη
 	bool paused;					// true αν το παιχνίδι είναι paused
 	int score;						// το τρέχον σκορ
 }* StateInfo;
@@ -49,6 +64,7 @@ typedef struct state_info {
 // Πληροφορίες για το ποια πλήκτρα είναι πατημένα
 typedef struct key_state {
 	bool up;						// true αν το αντίστοιχο πλήκτρο είναι πατημένο
+	bool down;
 	bool left;
 	bool right;
 	bool enter;
