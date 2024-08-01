@@ -1,5 +1,7 @@
 #pragma once
 #include <raylib.h>
+#include "arrow.hpp"
+#include <vector>
 
 class Player {
 
@@ -14,12 +16,15 @@ class Player {
         void MoveRight();
         void MoveLeft();
         void Idle();
-        // void Attack();
+    
+        void FireArrow();
+
+        std::vector<Arrow> arrows;
 
     private:
         Texture2D image_idle;
         Texture2D image_walking;
-        Vector2 position = {0, 0};
+        Vector2 position;
 
         // Animation-related variables
         float frameWidth;
@@ -31,7 +36,8 @@ class Player {
 
         bool isMoving;
         bool facingLeft;
-        
         // Scale factor
         float scale;
+
+        double lastFireTime;
 };

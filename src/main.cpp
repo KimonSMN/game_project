@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "game.hpp"
+
 int main()
 {
     const int screenWidth = 1080;
@@ -15,7 +16,7 @@ int main()
     {
         game.HandleInput();
         game.Update();
-
+    
         BeginDrawing();
         ClearBackground(RED);
         game.Draw();

@@ -1,11 +1,13 @@
 #include "player.hpp"
-
+#include <iostream>
 Player::Player() {
     image_idle = LoadTexture("assets/soldier_idle.png");
     image_walking = LoadTexture("assets/soldier_walk.png");
     position.x = (GetScreenWidth() - image_idle.width / 5) / 2;
     position.y = (GetScreenHeight() - image_idle.height) / 2;
-    
+
+    lastFireTime = 0.0;
+
     // Initialize animation variables
     totalFrames = 5;    // Total frames in a sprite sheet
     frameWidth = image_idle.width / 5; // Assuming 5 frames in the sprite sheet
@@ -84,3 +86,13 @@ void Player::MoveRight() {
 void Player::Idle() {
     isMoving = false;
 }
+
+
+void Player::FireArrow(){
+    if(GetTime() - lastFireTime >= 0.35){
+
+        arrows.push_back(Arrow({position.x, position.y}, facingLeft ? -6 : 6));
+        lastFireTime = GetTime();
+    }
+}
+
