@@ -24,12 +24,11 @@ class Player {
         // Animation-related variables
         float frameWidth;
         float frameHeight;
-        float currentFrame;
-        float totalFramesIdle;
-        float totalFramesWalking;
-        float frameSpeed;
-        float framesCounter;
-        
+        int currentFrame;
+        int totalFrames;
+        int frameSpeed;
+        int framesCounter;
+
         bool isMoving;
         bool facingLeft;
         

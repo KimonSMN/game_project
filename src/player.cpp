@@ -7,14 +7,13 @@ Player::Player() {
     position.y = (GetScreenHeight() - image_idle.height) / 2;
     
     // Initialize animation variables
+    totalFrames = 5;    // Total frames in a sprite sheet
     frameWidth = image_idle.width / 5; // Assuming 5 frames in the sprite sheet
     frameHeight = image_idle.height;
     currentFrame = 0;
-    totalFramesIdle = 5;
-    totalFramesWalking = 8;
-    frameSpeed = 5; // Number of frames to wait before advancing to the next frame
+    frameSpeed = 5;     // Number of frames to wait before advancing to the next frame
     framesCounter = 0;
-    scale = 3.0f;
+    scale = 3.5f;
 
     isMoving = false;
     facingLeft = false;
@@ -46,7 +45,9 @@ void Player::Draw() {
 
 void Player::Update() {
     framesCounter++;
-    int totalFrames = isMoving ? totalFramesWalking : totalFramesIdle;
+
+    int totalFrames = isMoving ? 8 : 5; // 5 frames when idle, 8 frames when walking
+    int frameSpeed = isMoving ? 6 : 3; 
 
     if (framesCounter >= (60 / frameSpeed)) {
         framesCounter = 0;
@@ -59,23 +60,23 @@ void Player::Update() {
 }
 
 void Player::MoveUp() {
-    position.y -= 7;
+    position.y -= 4;
     isMoving = true;
 }
 
 void Player::MoveDown() {
-    position.y += 7;
+    position.y += 4;
     isMoving = true;
 }
 
 void Player::MoveLeft() {
-    position.x -= 7;
+    position.x -= 4;
     isMoving = true;
     facingLeft = true;
 }
 
 void Player::MoveRight() {
-    position.x += 7;
+    position.x += 4;
     isMoving = true;
     facingLeft = false;
 }
