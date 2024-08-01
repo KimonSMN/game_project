@@ -11,4 +11,5 @@ class Game{
     private:
         Player player;
         Texture background;
+        float lastFireTime;
 };

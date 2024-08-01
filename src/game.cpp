@@ -2,6 +2,7 @@
 
 Game::Game(){
     background = LoadTexture("assets/background.png");
+    lastFireTime = 0.0f; 
 }
 
 Game::~Game(){
@@ -13,6 +14,13 @@ void Game::Update(){
     for(auto& arrow : player.arrows){
         arrow.Update();
     }
+
+    float currentTime = GetTime(); // Get the current time
+    if (currentTime - lastFireTime >= 1.0) { // Check if 2 seconds have passed
+        player.FireArrow();
+        lastFireTime = currentTime;
+    }
+
 }
 
 void Game::Draw(){
@@ -49,8 +57,7 @@ void Game::HandleInput(){
     if (!keyPressed) {  // When no key is pressed, call Idle Function
         player.Idle();
     }
-    if(IsKeyDown(KEY_SPACE)){
-        player.FireArrow();
-    }
+
+
 }
 

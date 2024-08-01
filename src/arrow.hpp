@@ -5,7 +5,7 @@ class Arrow {
 
     public: 
 
-        Arrow(Vector2 position, int speed);
+        Arrow(Vector2 position, int speed, bool facingLeft);
         ~Arrow();
         void Update();
         void Draw();
@@ -16,4 +16,5 @@ class Arrow {
         Texture2D arrow;
         Vector2 position;
         int speed;
+        bool facingLeft;
 };

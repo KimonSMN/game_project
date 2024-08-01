@@ -90,8 +90,8 @@ void Player::Idle() {
 
 void Player::FireArrow(){
     if(GetTime() - lastFireTime >= 0.35){
-
-        arrows.push_back(Arrow({position.x, position.y}, facingLeft ? -6 : 6));
+        
+        arrows.push_back(Arrow({position.x, position.y}, facingLeft ? -6 : 6, facingLeft));
         lastFireTime = GetTime();
     }
 }

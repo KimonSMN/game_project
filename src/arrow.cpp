@@ -1,12 +1,13 @@
 #include "arrow.hpp"
 #include <iostream>
 
-Arrow::Arrow(Vector2 position, int speed){
+Arrow::Arrow(Vector2 position, int speed, bool facingLeft){
 
     arrow = LoadTexture("assets/arrow.png");
 
     this -> position = position;
     this -> speed = speed;
+    this -> facingLeft = facingLeft;
     active = true;
 
 }
@@ -26,7 +27,7 @@ void Arrow::Draw(){
         // Source rectangle (part of the texture to draw)
         Rectangle sourceRec = { 0, 0, float(arrow.width), float(arrow.height) };
         
-        if(IsKeyDown(KEY_LEFT))
+        if(facingLeft)
             sourceRec.width = -arrow.width;
     
         DrawTexturePro(arrow, sourceRec, destRec, origin, 0.0f, WHITE);
