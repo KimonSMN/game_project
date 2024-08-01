@@ -2,12 +2,10 @@
 
 Game::Game(){
     background = LoadTexture("assets/background.png");
-
 }
 
 Game::~Game(){
     UnloadTexture(background);
-
 }
 
 void Game::Draw(){
@@ -20,16 +18,29 @@ void Game::Update(){
 }
 
 void Game::HandleInput(){
-    if (IsKeyDown(KEY_UP))
+    bool keyPressed = false;
+
+    if (IsKeyDown(KEY_UP)) {
         player.MoveUp();
+        keyPressed = true;
+    }
     
-    if(IsKeyDown(KEY_DOWN))
+    if (IsKeyDown(KEY_DOWN)) {
         player.MoveDown();
+        keyPressed = true;
+    }
     
-    if (IsKeyDown(KEY_LEFT))
+    if (IsKeyDown(KEY_LEFT)) {
         player.MoveLeft();
+        keyPressed = true;
+    }
     
-    if(IsKeyDown(KEY_RIGHT))
+    if (IsKeyDown(KEY_RIGHT)) {
         player.MoveRight();
+        keyPressed = true;
+    }
+    if (!keyPressed) {
+        player.Idle();
+    }
 }
 

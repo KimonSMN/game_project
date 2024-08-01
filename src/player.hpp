@@ -13,20 +13,26 @@ class Player {
         void MoveDown();
         void MoveRight();
         void MoveLeft();
+        void Idle();
         // void Attack();
 
     private:
-        Texture2D image;
+        Texture2D image_idle;
+        Texture2D image_walking;
         Vector2 position = {0, 0};
 
         // Animation-related variables
         float frameWidth;
         float frameHeight;
         float currentFrame;
-        float totalFrames;
+        float totalFramesIdle;
+        float totalFramesWalking;
         float frameSpeed;
         float framesCounter;
-
+        
+        bool isMoving;
+        bool facingLeft;
+        
         // Scale factor
         float scale;
 };
