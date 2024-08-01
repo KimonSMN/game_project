@@ -12,4 +12,6 @@ class Game{
         Player player;
         Texture background;
         float lastFireTime;
+
+        void DeleteInactiveArrows();
 };

@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include <iostream>
 
 Game::Game(){
     background = LoadTexture("assets/background.png");
@@ -20,7 +21,8 @@ void Game::Update(){
         player.FireArrow();
         lastFireTime = currentTime;
     }
-
+    
+    DeleteInactiveArrows();
 }
 
 void Game::Draw(){
@@ -57,7 +59,14 @@ void Game::HandleInput(){
     if (!keyPressed) {  // When no key is pressed, call Idle Function
         player.Idle();
     }
-
-
 }
 
+void Game::DeleteInactiveArrows(){
+    for(auto it = player.arrows.begin(); it != player.arrows.end();){
+        if (!it -> active){
+            it = player.arrows.erase(it);
+        } else{
+            it++;
+        }
+    }
+}
